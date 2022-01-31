@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/spyfall/static/css/main.4b011b00.css",
+    "main.js": "/spyfall/static/js/main.cabbd151.js",
+    "index.html": "/spyfall/index.html",
+    "main.4b011b00.css.map": "/spyfall/static/css/main.4b011b00.css.map",
+    "main.cabbd151.js.map": "/spyfall/static/js/main.cabbd151.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4b011b00.css",
+    "static/js/main.cabbd151.js"
+  ]
+}

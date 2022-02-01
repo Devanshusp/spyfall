@@ -1,5 +1,6 @@
 // https://chezsoi.org/lucas/spyfall/?lang=en
-// ^^ add locations ^^
+// ^^ use to add locations ^^
+
 export const locationMap = new Map();
 
 locationMap.set("airplane", [
@@ -170,6 +171,7 @@ locationMap.set("library", [
   "book fanatic",
   "nerd",
 ]);
+
 locationMap.set("retirement home", [
   "relative",
   "cribbage player",

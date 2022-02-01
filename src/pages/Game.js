@@ -14,6 +14,7 @@ import { db } from "../firebase";
 import { getUserId } from "../functions/UserID";
 import ConfirmModal from "./ConfirmModal";
 import { getLocationData } from "../functions/GameFunctions";
+import { locationMap } from "../functions/Locations";
 
 function Game(props) {
   // variables
@@ -30,6 +31,7 @@ function Game(props) {
   const [confirmAction, setConfirmAction] = useState();
   const [ongoingGame, setOngoingGame] = useState(false);
   const [isMidGamePlayer, setIsMidGamePlayer] = useState(false);
+  let checkedArr = [];
   const uuid = getUserId();
   const navigate = useNavigate();
 
@@ -133,7 +135,7 @@ function Game(props) {
   }
 
   function checkIfBanned() {
-    if (gameData.banned_player_uid.indexOf(uuid) != -1) {
+    if (gameData.banned_player_uid.indexOf(uuid) !== -1) {
       setBanned(true);
       setShowJoinForm(false);
     }
@@ -208,10 +210,11 @@ function Game(props) {
     checkIfMidGamePlayer();
     setOngoingGame(false);
     showJoinForm(false);
+    checkedArr = [];
   }
 
   function checkIfMidGamePlayer() {
-    if (gameData.midgame_player_uid.indexOf(uuid) != -1) {
+    if (gameData.midgame_player_uid.indexOf(uuid) !== -1) {
       setIsMidGamePlayer(true);
     } else {
       setIsMidGamePlayer(false);
@@ -267,7 +270,7 @@ function Game(props) {
               emoji = "🎮";
               hostTag = true;
             }
-            if (gameData.midgame_player_uid.indexOf(user.uid) != -1) {
+            if (gameData.midgame_player_uid.indexOf(user.uid) !== -1) {
               emoji = "👽";
             }
             if (index === gameData.player_data_arr.length - 1) {
@@ -307,6 +310,8 @@ function Game(props) {
   function GameCard() {
     const [hideRole, setHideRole] = useState(false);
     const [style, setStyle] = useState("");
+    const [showLocations, setShowLocations] = useState(false);
+    const [locationStyle, setLocationStyle] = useState(" h-fit");
 
     useEffect(() => {
       if (hideRole) {
@@ -315,6 +320,14 @@ function Game(props) {
         setStyle("");
       }
     }, [hideRole]);
+
+    useEffect(() => {
+      if (showLocations) {
+        setLocationStyle(" h-fit");
+      } else {
+        setLocationStyle(" h-8");
+      }
+    }, [showLocations]);
 
     function roleIndex() {
       for (let i = 0; i < gameData.player_data_arr.length; i++) {
@@ -327,38 +340,93 @@ function Game(props) {
 
     const index = roleIndex();
 
-    return !isMidGamePlayer && !showJoinForm ? (
-      <div className="w-full p-2 mt-8 mb-2 rounded-md shadow-sm bg-slate-200">
-        <div className={"py-10" + style}>
-          {uuid === gameData.spy_uid[0] ||
-          (gameData.spy_uid.length > 1 && uuid === gameData.spy_uid[1]) ? (
-            <div className="text-2xl text-center uppercase">
-              you are the spy!
-              <br />
-              good luck :)
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center">
-              <div className="text-xl text-center break-words">
-                Location:{" "}
-                <span className="text-2xl uppercase">{gameData.location}</span>
-              </div>
+    function LocationList(props) {
+      const [strikeStyle, setStrikeStyle] = useState("");
+      const [change, setChange] = useState(false);
 
-              <div className="text-xl text-center">
-                Role:{" "}
-                <span className="text-2xl uppercase">
-                  {gameData.location_roles[index]}
-                </span>
-              </div>
-            </div>
-          )}
-        </div>
-        <button
-          onClick={() => setHideRole(!hideRole)}
-          className="w-full btn-primary"
+      useEffect(() => {
+        if (checkedArr.indexOf(props.index) !== -1) {
+          setStrikeStyle(" line-through");
+        } else {
+          setStrikeStyle("");
+        }
+      }, [change]);
+
+      function changeCheckedArr() {
+        if (checkedArr.indexOf(props.index) !== -1) {
+          checkedArr.splice(checkedArr.indexOf(props.index), 1);
+        } else {
+          checkedArr.push(props.index);
+        }
+        setChange(!change);
+      }
+
+      return (
+        <div
+          onClick={changeCheckedArr}
+          className={
+            "py-[2px] text-sm text-center mini:text-base hover:cursor-pointer" +
+            strikeStyle
+          }
         >
-          {hideRole ? "show role" : "hide role"}
-        </button>
+          {props.location}
+        </div>
+      );
+    }
+
+    return !isMidGamePlayer && !showJoinForm ? (
+      <div>
+        <div className="w-full p-2 mt-8 mb-2 rounded-md shadow-sm bg-slate-200">
+          <div className={"py-10 duration-200" + style}>
+            {uuid === gameData.spy_uid[0] ||
+            (gameData.spy_uid.length > 1 && uuid === gameData.spy_uid[1]) ? (
+              <div className="text-2xl text-center uppercase">
+                you are the spy!
+                <br />
+                good luck :)
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center">
+                <div className="text-xl text-center break-words">
+                  Location:{" "}
+                  <span className="text-2xl uppercase">
+                    {gameData.location}
+                  </span>
+                </div>
+
+                <div className="text-xl text-center">
+                  Role:{" "}
+                  <span className="text-2xl uppercase">
+                    {gameData.location_roles[index]}
+                  </span>
+                </div>
+              </div>
+            )}
+          </div>
+          <button
+            onClick={() => setHideRole(!hideRole)}
+            className="w-full btn-primary"
+          >
+            {hideRole ? "show role" : "hide role"}
+          </button>
+        </div>
+        <div
+          className={
+            "rounded-md border overflow-hidden shadow-sm " + locationStyle
+          }
+        >
+          <button
+            onClick={() => setShowLocations(!showLocations)}
+            className="w-full h-8 mx-auto text-lg uppercase hover:underline bg-slate-100"
+          >
+            {showLocations ? "locations checklist △" : "locations checklist ▽"}
+          </button>
+          <div className="grid grid-cols-1 py-2 slim:grid-cols-2">
+            {[...locationMap].map((locationData, index) => {
+              return <LocationList location={locationData[0]} index={index} />;
+            })}
+          </div>
+        </div>
       </div>
     ) : (
       ongoingGame && (

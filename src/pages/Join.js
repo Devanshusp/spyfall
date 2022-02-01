@@ -11,7 +11,7 @@ function Join() {
   async function handleSubmit(e) {
     e.preventDefault();
     const codesDoc = await getDoc(doc(db, "game_room_codes", "code_array"));
-    if (codesDoc.data().codes.indexOf(code) != -1) {
+    if (codesDoc.data().codes.indexOf(code) !== -1) {
       navigate(`/game/${code}`);
     } else {
       setError("please enter a valid code");
@@ -20,23 +20,6 @@ function Join() {
 
   function handleChange(e) {
     setCode(e.target.value.toUpperCase());
-  }
-
-  async function codeExists() {
-    let codeArr = [];
-    const codesDoc = await getDoc(doc(db, "game_room_codes", "code_array"));
-    if (codesDoc.exists()) {
-      codesDoc.data().codes.forEach((element) => {
-        codeArr.push(element);
-      });
-      console.log(codeArr, code);
-      console.log(codeArr.indexOf(code));
-      if (codeArr.indexOf(code) != -1) {
-        return true;
-      } else {
-        return false;
-      }
-    }
   }
 
   return (

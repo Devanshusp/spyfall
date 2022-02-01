@@ -3,7 +3,7 @@
 
 export const locationMap = new Map();
 
-locationMap.set("airplane", [
+locationMap.set("✈️ airplane", [
   "first class passenger",
   "air marshal",
   "mechanic",
@@ -13,7 +13,7 @@ locationMap.set("airplane", [
   "economy class passenger",
 ]);
 
-locationMap.set("bank", [
+locationMap.set("🏦 bank", [
   "armored car driver",
   "manager",
   "consultant",
@@ -23,7 +23,7 @@ locationMap.set("bank", [
   "customer",
 ]);
 
-locationMap.set("beach", [
+locationMap.set("🏖️ beach", [
   "beach waitress",
   "kite surfer",
   "lifeguard",
@@ -33,7 +33,7 @@ locationMap.set("beach", [
   "beach goer",
 ]);
 
-locationMap.set("cathedral", [
+locationMap.set("⛪ cathedral", [
   "priest",
   "beggar",
   "sinner",
@@ -43,7 +43,7 @@ locationMap.set("cathedral", [
   "parishioner",
 ]);
 
-locationMap.set("cemetery", [
+locationMap.set("🪦 cemetery", [
   "priest",
   "grave robber",
   "poet",
@@ -56,7 +56,7 @@ locationMap.set("cemetery", [
   "gothic girl",
 ]);
 
-locationMap.set("circus tent", [
+locationMap.set("🎪 circus tent", [
   "acrobat",
   "animal trainer",
   "magician",
@@ -66,7 +66,7 @@ locationMap.set("circus tent", [
   "visitor",
 ]);
 
-locationMap.set("corporate party", [
+locationMap.set("🍾 corporate party", [
   "entertainer",
   "manager",
   "unwanted guest",
@@ -76,7 +76,7 @@ locationMap.set("corporate party", [
   "accountant",
 ]);
 
-locationMap.set("hospital", [
+locationMap.set("🏥 hospital", [
   "nurse",
   "doctor",
   "anesthesiologist",
@@ -86,7 +86,7 @@ locationMap.set("hospital", [
   "patient",
 ]);
 
-locationMap.set("hotel", [
+locationMap.set("🏨 hotel", [
   "doorman",
   "security guard",
   "manager",
@@ -96,7 +96,7 @@ locationMap.set("hotel", [
   "customer",
 ]);
 
-locationMap.set("movie studio", [
+locationMap.set("🎥 movie studio", [
   "stunt man",
   "sound engineer",
   "camera man",
@@ -106,7 +106,7 @@ locationMap.set("movie studio", [
   "actor",
 ]);
 
-locationMap.set("passenger train", [
+locationMap.set("🚉 passenger train", [
   "mechanic",
   "border patrol",
   "train attendant",
@@ -116,7 +116,7 @@ locationMap.set("passenger train", [
   "passenger",
 ]);
 
-locationMap.set("police station", [
+locationMap.set("🚓 police station", [
   "detective",
   "lawyer",
   "journalist",
@@ -126,7 +126,7 @@ locationMap.set("police station", [
   "patrol officer",
 ]);
 
-locationMap.set("restaurant", [
+locationMap.set("🍽️ restaurant", [
   "musician",
   "bouncer",
   "hostess",
@@ -136,7 +136,7 @@ locationMap.set("restaurant", [
   "customer",
 ]);
 
-locationMap.set("school", [
+locationMap.set("🏫 school", [
   "gym teacher",
   "principal",
   "security guard",
@@ -146,7 +146,7 @@ locationMap.set("school", [
   "student",
 ]);
 
-locationMap.set("art museum", [
+locationMap.set("🖼️ art museum", [
   "ticket seller",
   "student",
   "visitor",
@@ -159,7 +159,7 @@ locationMap.set("art museum", [
   "tourist",
 ]);
 
-locationMap.set("library", [
+locationMap.set("📖 library", [
   "old man",
   "journalist",
   "author",
@@ -172,7 +172,7 @@ locationMap.set("library", [
   "nerd",
 ]);
 
-locationMap.set("retirement home", [
+locationMap.set("🧓 retirement home", [
   "relative",
   "cribbage player",
   "old person",
@@ -183,7 +183,7 @@ locationMap.set("retirement home", [
   "psychologist",
 ]);
 
-locationMap.set("jail", [
+locationMap.set("⛓️ jail", [
   "wrongly accused man",
   "cctv operator",
   "guard",
@@ -196,7 +196,7 @@ locationMap.set("jail", [
   "maniac",
 ]);
 
-locationMap.set("university", [
+locationMap.set("🎓 university", [
   "graduate student",
   "professor",
   "dean",
@@ -206,7 +206,7 @@ locationMap.set("university", [
   "student",
 ]);
 
-locationMap.set("race track", [
+locationMap.set("🏎️ race track", [
   "team owner",
   "driver",
   "engineer",
